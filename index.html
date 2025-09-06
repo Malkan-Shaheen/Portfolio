@@ -1040,7 +1040,7 @@
                     <h2>My Projects</h2>
                 </div>
                 <div class="projects-grid">
-                    <div class="project-card featured animated-text">
+                    <div class="project-card animated-text">
                         <div class="project-img">
                             <img src="./assets/college.png" alt="College Website">
                         </div>
@@ -1328,6 +1328,51 @@
     const data = await res.json();
     alert(data.message);
   });
+
+   function navigateToSection(sectionId) {
+        const targetSection = document.querySelector(sectionId);
+        
+        if (!targetSection) return;
+        
+        // Hide all sections
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        // Show target section
+        targetSection.classList.add('active');
+        
+        // Update active link
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === sectionId) {
+                link.classList.add('active');
+            }
+        });
+        
+        // Close sidebar on mobile after clicking a link
+        if (window.innerWidth < 992) {
+            sidebar.classList.remove('active');
+        }
+        
+        // Scroll to top of the section
+        window.scrollTo(0, 0);
+    }
+
+    // Modify the navigation click handler
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            navigateToSection(targetId);
+        });
+    });
+
+    // Add click handler for the "View My Work" button
+    document.querySelector('a[href="#projects"]').addEventListener('click', function(e) {
+        e.preventDefault();
+        navigateToSection('#projects');
+    });
 </script>
 
             </div>
