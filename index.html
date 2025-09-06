@@ -809,7 +809,7 @@
                         <p>Aspiring IT professional with a strong interest in software development and enterprise IT infrastructure. Passionate about learning and implementing industry best practices to enhance performance, resolve technical challenges, and deliver efficient and user-centric solutions.</p>
                         <p>Explore my projects, education, and certifications to learn more about my journey!</p>
                     </div>
-                    <a href="#projects" class="btn animated-text">View My Work</a>
+                    <a href="#projects" class="btn animated-text view-work-btn">View My Work</a>
                 </div>
             </div>
         </section>
@@ -1328,51 +1328,6 @@
     const data = await res.json();
     alert(data.message);
   });
-
-   function navigateToSection(sectionId) {
-        const targetSection = document.querySelector(sectionId);
-        
-        if (!targetSection) return;
-        
-        // Hide all sections
-        sections.forEach(section => {
-            section.classList.remove('active');
-        });
-        
-        // Show target section
-        targetSection.classList.add('active');
-        
-        // Update active link
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === sectionId) {
-                link.classList.add('active');
-            }
-        });
-        
-        // Close sidebar on mobile after clicking a link
-        if (window.innerWidth < 992) {
-            sidebar.classList.remove('active');
-        }
-        
-        // Scroll to top of the section
-        window.scrollTo(0, 0);
-    }
-
-    // Modify the navigation click handler
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href');
-            navigateToSection(targetId);
-        });
-    });
-
-    // Add click handler for the "View My Work" button
-    document.querySelector('a[href="#projects"]').addEventListener('click', function(e) {
-        e.preventDefault();
-        navigateToSection('#projects');
-    });
 </script>
 
             </div>
@@ -1401,6 +1356,37 @@
         const sections = document.querySelectorAll('.section');
         const navLinks = document.querySelectorAll('.nav-links a');
         
+        // Function to navigate to a specific section
+        function navigateToSection(sectionId) {
+            const targetSection = document.querySelector(sectionId);
+            
+            if (!targetSection) return;
+            
+            // Hide all sections
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show target section
+            targetSection.classList.add('active');
+            
+            // Update active link
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === sectionId) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Close sidebar on mobile after clicking a link
+            if (window.innerWidth < 992) {
+                sidebar.classList.remove('active');
+            }
+            
+            // Scroll to top of the section
+            window.scrollTo(0, 0);
+        }
+        
         function changeActiveSection() {
             let current = '';
             
@@ -1426,6 +1412,12 @@
             animateSkillBars();
             observeAnimations();
             changeActiveSection();
+            
+            // Add click handler for the "View My Work" button
+            document.querySelector('.view-work-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                navigateToSection('#projects');
+            });
         });
         
         // Change active section on scroll
@@ -1437,31 +1429,8 @@
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                
                 const targetId = link.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                // Hide all sections
-                sections.forEach(section => {
-                    section.classList.remove('active');
-                });
-                
-                // Show target section
-                targetSection.classList.add('active');
-                
-                // Update active link
-                navLinks.forEach(navLink => {
-                    navLink.classList.remove('active');
-                });
-                link.classList.add('active');
-                
-                // Close sidebar on mobile after clicking a link
-                if (window.innerWidth < 992) {
-                    sidebar.classList.remove('active');
-                }
-                
-                // Scroll to top of the section
-                window.scrollTo(0, 0);
+                navigateToSection(targetId);
             });
         });
         
