@@ -7,19 +7,18 @@ export default async function handler(req, res) {
 
   const { name, email, subject, message } = req.body;
 
-  // Create transporter using Gmail SMTP
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "malkanshaheen45@gmail.com",   // your Gmail
-      pass: "smgv uydu gblb nqzj" // app password, not your real password
-    }
+      user: process.env.MY_EMAIL,     // from Vercel env vars
+      pass: process.env.MY_PASSWORD,  // Gmail app password
+    },
   });
 
   try {
     await transporter.sendMail({
       from: email,
-      to: "malkanshaheen45@gmail.com", // where you’ll receive messages
+      to: process.env.MY_EMAIL, // you receive emails here
       subject: `New message: ${subject}`,
       text: `
         Name: ${name}
@@ -30,7 +29,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ message: "Email sent successfully!" });
   } catch (error) {
-     console.error("Email send error:", error);
-    res.status(500).json({ message: "Failed to send email", error });
+    console.error("Email send error:", error);
+    res.status(500).json({ message: "Failed to send email", error: error.message }); // ✅ return only message
   }
 }
