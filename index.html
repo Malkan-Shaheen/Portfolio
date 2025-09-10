@@ -422,13 +422,18 @@
             color: var(--secondary-color);
         }
 
-         #prominent-projects.prominent-projects {
-            display: none;
-        }
-        
-        #prominent-projects.prominent-projects.active {
-            display: block;
-        }
+        /* Prominent Projects Section */
+#prominent-projects {
+    background: linear-gradient(135deg, #f5f7ff 0%, #e0e7ff 100%);
+    padding: 100px 0;
+    margin: 80px 0;
+    display: none;
+}
+
+#prominent-projects.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
         /* Prominent Projects Section */
         .prominent-projects {
             background: linear-gradient(135deg, #f5f7ff 0%, #e0e7ff 100%);
@@ -1111,7 +1116,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+<!-- In your projects section, after the projects-grid -->
+<div style="padding-top: 50px; text-align: center;">
+    <a href="#prominent-projects" class="btn animated-text view-work-btn">View My Featured Work</a>
+</div>            </div>
         </section>
 
         <!-- Prominent Projects Section -->
@@ -1357,35 +1365,35 @@
         const navLinks = document.querySelectorAll('.nav-links a');
         
         // Function to navigate to a specific section
-        function navigateToSection(sectionId) {
-            const targetSection = document.querySelector(sectionId);
-            
-            if (!targetSection) return;
-            
-            // Hide all sections
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Show target section
-            targetSection.classList.add('active');
-            
-            // Update active link
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === sectionId) {
-                    link.classList.add('active');
-                }
-            });
-            
-            // Close sidebar on mobile after clicking a link
-            if (window.innerWidth < 992) {
-                sidebar.classList.remove('active');
-            }
-            
-            // Scroll to top of the section
-            window.scrollTo(0, 0);
+function navigateToSection(sectionId) {
+    const targetSection = document.querySelector(sectionId);
+    
+    if (!targetSection) return;
+    
+    // Hide all sections
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // Show target section
+    targetSection.classList.add('active');
+    
+    // Update active link
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === sectionId) {
+            link.classList.add('active');
         }
+    });
+    
+    // Close sidebar on mobile after clicking a link
+    if (window.innerWidth < 992) {
+        sidebar.classList.remove('active');
+    }
+    
+    // Scroll to top of the section
+    window.scrollTo(0, 0);
+}
         
         function changeActiveSection() {
             let current = '';
@@ -1418,6 +1426,10 @@
                 e.preventDefault();
                 navigateToSection('#projects');
             });
+            document.querySelector('a[href="#prominent-projects"].view-work-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        navigateToSection('#prominent-projects');
+    });
         });
         
         // Change active section on scroll
