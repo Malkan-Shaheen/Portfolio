@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Malkan Shaheen - Portfolio</title>
-    <link rel="icon" type="image/png" href="./assets/favicon.png">
+    <link rel="icon" type="image/png" href="./assets/Profile1.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -317,6 +317,49 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
+        /* Add this to your existing [data-theme="dark"] section */
+[data-theme="dark"] .sidebar {
+  background: white; /* This keeps the sidebar dark blue in dark mode */
+  color: #1d2b3a;
+}
+
+[data-theme="dark"] .profile h2 {
+  color: #1d2b3a;
+}
+
+[data-theme="dark"] .profile p {
+  color: #1d2b3a;
+}
+
+[data-theme="dark"] .nav-links a {
+  color: #1d2b3a;
+}
+
+[data-theme="dark"] .nav-links a:hover,
+[data-theme="dark"] .nav-links a.active {
+  color: #1d2b3a;
+  background: white;
+}
+
+[data-theme="dark"] .social-link {
+  background-color:white;
+}
+
+[data-theme="dark"] .social-link:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+[data-theme="dark"] .resume-btn {
+  background:white ;
+  color:var(--primary-color) ;
+}
+
+[data-theme="dark"] .resume-btn:hover {
+  background: var(--primary-color);
+  color:white;
+}
+
         /* Main Content */
         .main-content {
             flex: 1;
@@ -343,6 +386,23 @@
             max-width: 1000px;
             margin: 0 auto;
         }
+
+        .profile-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary-color);
+  display: block;
+}
+
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
 
         .section-title {
             margin-bottom: 60px;
@@ -1121,7 +1181,9 @@
     <div class="sidebar">
         <div class="profile">
             <div class="profile-img-container">
-                <div class="profile-img">MS</div>
+                <div class="profile-img">
+                    <img src="./assets/Profile.jpg" alt="MS">
+                </div>
             </div>
             <h2>Malkan Shaheen</h2>
             <p>Web & App Developer</p>
