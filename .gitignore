@@ -1,0 +1,21 @@
+# Environment variables - NEVER commit these!
+.env
+
+# XAMPP / PHP
+*.log
+.htaccess.local
+
+# Node.js (if you use it)
+node_modules/
+package-lock.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
